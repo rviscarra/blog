@@ -4,7 +4,6 @@ author: "Rafael Viscarra"
 cover: "/images/webrtc-speech-to-text/cover.png"
 tags: ["webrtc", "speech-to-text", "google-speech", "golang", "pion"]
 date: 2019-06-23T00:15:10-06:00
-draft: true
 ---
 
 I've developed quite a few WebRTC applications over the last three years and 

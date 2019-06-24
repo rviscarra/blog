@@ -1,7 +1,6 @@
 ---
 title: 'About'
 date: 2019-06-23T22:43:14-06:00
-draft: true
 layout: 'about'
 menu: 'main'
 weight: 10
