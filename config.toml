@@ -1,0 +1,23 @@
+baseURL = "https://viscarra.dev/"
+languageCode = "en-us"
+title = "Rafael Viscarra I/O"
+theme = "hugo-nuo"
+pygmentsStyle = "dracula"
+staticDir = ["static"]
+
+[params]
+  # customStyle = "styles/custom.scss"
+  github = "rviscarra"
+  email = "rafael@viscarra.dev"
+
+DefaultContentLanguage = "en"
+[languages]
+  [languages.en]
+    contentDir = "content/en"
+    languageName = "English"
+    weight = 10
+  [languages.es]
+    contentDir = "content/es"
+    languageName = "Espanol"
+    weight = 20
+
