@@ -11,8 +11,8 @@ noticed that as ML-based features arrive on almost every popular application one
 way or another, there's been an increase on feature requests that involve speech 
 to text, sentiment analysis, natural language understanding and computer vision.
 
-Almost everytime one of these features is implemented it requires a considerable 
-amount of engineering resources, probably because the available 
+Almost every time one of these features is implemented it requires a 
+considerable amount of engineering resources, probably because the available 
 [tools](https://doc-kurento.readthedocs.io/en/6.9.0/user/writing_modules.html#opencv-module) 
 have a steep learning curve or aren't a good match for the specific use case.
 
@@ -30,7 +30,7 @@ conference there are
 on the WebRTC space that can help, however, they could be tricky to use 
 (there's dedicated guide on how to build the WebRTC Native API) or hard to 
 extend. That's the reason I felt the Pion WebRTC library was like a breath of 
-fresh air, developed in Go, almost identic API as the browser's (which may not 
+fresh air, developed in Go, almost identical API as the browser's (which may not 
 feel completely idiomatic in Go, but that's a subject for some other time) and 
 pretty easy to use overall.
 
