@@ -11,10 +11,10 @@ I'm a senior backend engineer currently living in
 [El Salvador](https://en.wikipedia.org/wiki/El_Salvador). 
 
 I have been a professional software engineer for the last 8 years. I enjoy 
-tinkering with new technologies and learning in general. Writting clean, 
+tinkering with new technologies and learning in general. Writing clean, 
 efficient and correct software is my passion.
 
-These are some of the technologies I have inmy toolbox:
+These are some of the technologies I have in my toolbox:
 
 - Amazon Web Services
 - Python
