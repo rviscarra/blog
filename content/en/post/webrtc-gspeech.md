@@ -37,7 +37,7 @@ pretty easy to use overall.
 Here's a sample of all it takes to create a PeerConnection, feed it an SDP offer 
 and get an SDP answer back.
 
-{{< highlight go>}}
+{{<highlight go>}}
 
 import "github.com/pion/webrtc/v2"
 
@@ -71,11 +71,11 @@ func CreatePeerConnection(offer string) (string, error) {
 	}
   return answer, nil
 }
-{{< / highlight >}}
+{{</highlight>}}
 
 It's pretty straight forward if you ask me.
 
-### Show me the code!
+### Show me the code (structure)!
 
 We'll build a single server to handle the signaling and the webrtc traffic, this 
 ideally would be split into two microservices since it's very likely that both 
@@ -148,3 +148,5 @@ better understanding of what's happening.
 That's all for now, there's another blog post in the works were we'll
 do some primitive voice detection to work around the Google Speech limitation 
 of 60 seconds on streaming recognition.
+
+{{<include_md file="partials/job.md">}}
