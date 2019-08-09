@@ -59,7 +59,8 @@ Since this application only needs to stream media to the browser, I needed
 support for sendonly transceiver on the server. 
 After going thru Pion's code I realized that it wasn't possible at the time. 
 However, not everything's so bad, the need for this feature pushed me to 
-implement it and contribute it back to the Pion repo! 
+implement it and 
+[contribute to the Pion repo](https://pion.ly/knowledge-base/pion-internals/contributing/)! 
 
 #### X Server (only?) support
 
@@ -122,7 +123,11 @@ H264 Constrained Baseline 3.1 (`42e01f`) in this case.
 
 ### How does it look?
 
+Here it is, working on Firefox
+
 ![Screenshot](/images/webrtc-remote-screen/demo.png)
+
+And finally, a brief capture of it (looks better in HD).
 
 <iframe src='https://gfycat.com/ifr/ThunderousBaggyJunebug' frameborder='0' scrolling='no' allowfullscreen width='640' height='512'></iframe>
 
