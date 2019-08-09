@@ -31,6 +31,8 @@ because:
 
 ### General Overview
 
+![Architecture](/images/webrtc-remote-screen/architecture.png)
+
 Here's the basic gist of what the tool does:
 
 1. The service starts and listens on port 9000 by default, this can be changed 
