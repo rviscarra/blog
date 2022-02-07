@@ -1,6 +1,6 @@
 ---
 title: "Fourteen languages in one month"
-author: "Rafael Viscarra"
+author: "Rafael"
 cover: "/images/fourteen-languages/cover.png"
 tags: ["seven languages in seven weeks", "clojure", "idris", "elixir", "lua", "factor", "julia"]
 date: 2020-10-06T00:00:00-03:00

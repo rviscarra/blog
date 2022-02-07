@@ -1,0 +1,38 @@
+
+$danger: hsl(348, 100%, 61%);
+$warning: hsl(48, 100%, 67%);
+$info: hsl(204, 86%, 53%);
+
+.alert {
+  padding: 10px;
+  border-radius: 5px;
+
+  .alert-title {
+    font-weight: bold;
+  }
+
+  &.info {
+    border: 1px solid $info;
+    color: $info;
+    background-color: hsl(205, 100%, 95%);
+  }
+  
+  &.warning {
+    border: 1px solid darken($warning, 20%);
+    color: black;
+    background-color: $warning;
+  }
+
+  &.danger {
+    border: 1px solid $danger;
+    color: $danger;
+    background-color: hsl(0, 100%, 95%);
+  }
+}
+
+.no-box-shadow {
+  img {
+    box-shadow: none !important;
+  }
+}
+

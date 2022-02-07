@@ -1,6 +1,6 @@
 ---
 title: "Speech to text in the browser using WebRTC"
-author: "Rafael Viscarra"
+author: "Rafael"
 cover: "/images/webrtc-speech-to-text/cover.png"
 tags: ["webrtc", "speech-to-text", "google-speech", "golang", "pion"]
 date: 2019-06-23T00:15:10-06:00
@@ -148,5 +148,3 @@ better understanding of what's happening.
 That's all for now, there's another blog post in the works were we'll
 do some primitive voice detection to work around the Google Speech limitation 
 of 60 seconds on streaming recognition.
-
-{{<include_md file="partials/job.md">}}

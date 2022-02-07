@@ -1,0 +1,6 @@
+<div class="alert {{ if .Get "class" }}{{ .Get "class" }}{{ else }}info{{ end }}">
+  <div class="alert-title">{{ if .Get "title" }}{{ .Get "title" }}{{ else }}Info{{ end }}</div>
+  <div>
+    {{ .Inner | markdownify }}
+  </div>
+</div>
