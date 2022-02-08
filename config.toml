@@ -1,14 +1,15 @@
 baseURL = "https://viscarra.dev/"
 languageCode = "en-us"
-title = "Rafael Viscarra I/O"
+title = "Rafael Viscarra StdOut"
 theme = "hugo-nuo"
 pygmentsStyle = "dracula"
 staticDir = ["static"]
+copyright = "© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, please give source if you wish to quote or reproduce."
 
 [params]
-  # customStyle = "styles/custom.scss"
+  customStyle = "styles/custom.scss"
   github = "rviscarra"
-  email = "rafael@viscarra.dev"
+  email = "rafael {at} viscarra {dot} dev"
 
 DefaultContentLanguage = "en"
 [languages]
@@ -21,3 +22,20 @@ DefaultContentLanguage = "en"
     languageName = "Espanol"
     weight = 20
 
+[[menu.main]]
+  name = "Home"
+  weight = 10
+  identifier = "home"
+  url = "/"
+
+[[menu.main]]
+  name = "GitHub"
+  weight = 20
+  identifier = "github"
+  url = "https://github.com/rviscarra"
+
+[[menu.main]]
+  name = "About"
+  weight = 30
+  identifier = "about"
+  url = "/about"

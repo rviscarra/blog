@@ -1,6 +1,6 @@
 ---
 title: "Stream a remote screen with WebRTC"
-author: "Rafael Viscarra"
+author: "Rafael"
 cover: "/images/webrtc-remote-screen/cover.png"
 tags: ["webrtc", "linux", "h264", "golang", "pion"]
 date: 2019-07-31T22:13:29-06:00
@@ -132,5 +132,3 @@ Here it is, working on Firefox
 And finally, a brief capture of it (looks better in HD).
 
 <iframe src='https://gfycat.com/ifr/ThunderousBaggyJunebug' frameborder='0' scrolling='no' allowfullscreen width='640' height='512'></iframe>
-
-{{<include_md file="partials/job.md">}}
