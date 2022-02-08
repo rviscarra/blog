@@ -3,7 +3,7 @@ title: "Actor Model with Go 1.18 Generics"
 author: "Rafael"
 cover: "/images/go-generics-actor/cover.png"
 tags: ["golang", "actor", "generics"]
-date: 2022-02-01T00:00:00-03:00
+date: 2022-02-07T00:00:00-03:00
 ---
 
 Go 1.18 is scheduled to release in February 2022, this release is a big one
