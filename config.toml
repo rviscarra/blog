@@ -1,7 +1,7 @@
 baseURL = "https://viscarra.dev/"
 languageCode = "en-us"
-title = "Rafael Viscarra StdOut"
-theme = "hugo-nuo"
+title = "Rafael's stdout"
+theme = "hugo-nuevo"
 pygmentsStyle = "dracula"
 staticDir = ["static"]
 copyright = "© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, please give source if you wish to quote or reproduce."
