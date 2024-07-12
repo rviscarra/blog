@@ -9,7 +9,8 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
 [params]
   customStyle = "styles/custom.scss"
   github = "rviscarra"
-  email = "rafael {at} viscarra {dot} dev"
+  linkedin = "rafael-viscarra-dev"
+  email = "hello {at} viscarra {dot} dev"
 
 DefaultContentLanguage = "en"
 [languages]
@@ -19,7 +20,7 @@ DefaultContentLanguage = "en"
     weight = 10
   [languages.es]
     contentDir = "content/es"
-    languageName = "Espanol"
+    languageName = "Español"
     weight = 20
 
 [[menu.main]]

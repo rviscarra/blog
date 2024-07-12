@@ -12,4 +12,4 @@ I have been a professional software engineer for the last 9+ years, I enjoy
 tinkering with new technologies and learning in general. Writing clean, 
 efficient and correct software is my passion.
 
-If you want to get in touch you can send an email to `rafael {at} viscarra {dot} dev`.
+If you want to get in touch you can send an email to `hello@viscarra.dev`.
