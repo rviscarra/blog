@@ -12,6 +12,10 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   linkedin = "rafael-viscarra-dev"
   email = "hello {at} viscarra {dot} dev"
 
+[markup]
+  [markup.tableOfContents]
+    startLevel = 3
+
 DefaultContentLanguage = "en"
 [languages]
   [languages.en]
