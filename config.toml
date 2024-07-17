@@ -11,6 +11,7 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   github = "rviscarra"
   linkedin = "rafael-viscarra-dev"
   email = "hello {at} viscarra {dot} dev"
+  fontAwesome = true
 
 [markup]
   [markup.tableOfContents]
