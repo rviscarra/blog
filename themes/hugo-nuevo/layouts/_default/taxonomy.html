@@ -1,0 +1,11 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  <section class="main">
+    <header>
+      <h2>Posts with {{ .Data.Singular }} [{{ .Title }}]</h2>
+    </header>
+    {{ range where .Site.RegularPages ".Params.Tags" "intersect" (slice .Data.Term) }}
+      {{ template "post/summary.html" . }}
+    {{ end }}
+  </section>
+{{ end }}
