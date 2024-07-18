@@ -407,5 +407,8 @@ and interop with Python almost seamlessly, making it a great tool for our belt.
 I would like to thank [Jessica](https://www.linkedin.com/in/jessica-lopez-v) for the cover image and 
 [Norman](https://www.linkedin.com/in/norman-argueta) for the input during the early stages of this blog post.
 
+{{<alert class="info" title="Let's work together">}}
+Do you have an interesting/challenging project I could be a part of? Feel free to [reach out](/about).
+{{</alert>}}
 
 [^1]: Unspent Transaction Output
