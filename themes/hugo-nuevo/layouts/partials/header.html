@@ -23,7 +23,8 @@
           {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} is-active{{ end }}
           {{ if and (eq .Identifier "tags") (eq $kind "taxonomy") }} is-active{{ end }}
           {{ if and (eq .Identifier "home") (eq $type "post") }} is-active{{ end }}">
-          <a href="{{ .URL }}">{{ .Name }}</a>
+          {{- $target := cond (strings.HasPrefix .URL "/") "_self" "_blank" }}
+          <a href="{{ .URL }}" target="{{ $target }}">{{ .Name }}</a>
         </li>
       {{ end }}
     </ul>
@@ -87,7 +88,7 @@
 
       {{- with .Site.Params.email -}}
         <li class="social-item">
-          <a href="mailto:{{ . }}" title="Email" aria-label="Email">
+          <a href="mailto:{{ . }}" title="Email" aria-label="Email" target="_blank">
             <span class="{{ $emailIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -95,7 +96,7 @@
 
       {{- with .Site.Params.github -}}
         <li class="social-item">
-          <a href="//github.com/{{ . }}" rel="me" title="GitHub" aria-label="GitHub">
+          <a href="//github.com/{{ . }}" rel="me" title="GitHub" aria-label="GitHub" target="_blank">
 	    <span class="{{ $githubIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -103,7 +104,7 @@
 
       {{- with .Site.Params.twitter -}}
         <li class="social-item">
-          <a href="//twitter.com/{{ . }}" rel="me" title="Twitter" aria-label="Twitter">
+          <a href="//twitter.com/{{ . }}" rel="me" title="Twitter" aria-label="Twitter" target="_blank">
             <span class="{{ $twitterIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -111,7 +112,7 @@
 
       {{- with .Site.Params.facebook -}}
         <li class="social-item">
-          <a href="//www.facebook.com/{{ . }}" rel="me" title="Facebook" aria-label="Facebook">
+          <a href="//www.facebook.com/{{ . }}" rel="me" title="Facebook" aria-label="Facebook" target="_blank">
             <span class="{{ $facebookIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -119,7 +120,7 @@
 
       {{- with .Site.Params.google -}}
         <li class="social-item">
-          <a href="//plus.google.com/{{ . }}" rel="me" title="Google+" aria-label="Google+">
+          <a href="//plus.google.com/{{ . }}" rel="me" title="Google+" aria-label="Google+" target="_blank">
             <span class="{{ $googleIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -127,7 +128,7 @@
 
       {{- with .Site.Params.instagram -}}
         <li class="social-item">
-          <a href="//www.instagram.com/{{ . }}" rel="me" title="Instagram" aria-label="Instagram">
+          <a href="//www.instagram.com/{{ . }}" rel="me" title="Instagram" aria-label="Instagram" target="_blank">
             <span class="{{ $instagramIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -135,7 +136,7 @@
 
       {{- with .Site.Params.youtube -}}
         <li class="social-item">
-          <a href="//www.youtube.com/user/{{ . }}" rel="me" title="YouTube" aria-label="YouTube">
+          <a href="//www.youtube.com/user/{{ . }}" rel="me" title="YouTube" aria-label="YouTube" target="_blank">
             <span class="{{ $youtubeIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -143,7 +144,7 @@
 
       {{- with .Site.Params.vimeo -}}
         <li class="social-item">
-          <a href="//vimeo.com/{{ . }}" rel="me" title="Vimeo" aria-label="Vimeo">
+          <a href="//vimeo.com/{{ . }}" rel="me" title="Vimeo" aria-label="Vimeo" target="_blank">
             <span class="{{ $vimeoIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -151,7 +152,7 @@
 
       {{- with .Site.Params.medium -}}
         <li class="social-item">
-          <a href="//medium.com/@{{ . }}" rel="me" title="Medium" aria-label="Medium">
+          <a href="//medium.com/@{{ . }}" rel="me" title="Medium" aria-label="Medium" target="_blank">
             <span class="{{ $mediumIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -159,7 +160,7 @@
 
       {{- with .Site.Params.reddit -}}
         <li class="social-item">
-          <a href="//www.reddit.com/user/{{ . }}" rel="me" title="Reddit" aria-label="Reddit">
+          <a href="//www.reddit.com/user/{{ . }}" rel="me" title="Reddit" aria-label="Reddit" target="_blank">
             <span class="{{ $redditIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -167,7 +168,7 @@
 
       {{- with .Site.Params.quora -}}
         <li class="social-item">
-          <a href="//www.quora.com/profile/{{ . }}" rel="me" title="Quora" aria-label="Quora">
+          <a href="//www.quora.com/profile/{{ . }}" rel="me" title="Quora" aria-label="Quora" target="_blank">
             <span class="{{ $quoraIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -175,7 +176,7 @@
 
       {{- with .Site.Params.stackoverflow -}}
         <li class="social-item">
-          <a href="//stackoverflow.com/users/{{ . }}" rel="me" title="Stack Overflow"  aria-label="Stack Overflow">
+          <a href="//stackoverflow.com/users/{{ . }}" rel="me" title="Stack Overflow"  aria-label="Stack Overflow" target="_blank">
             <span class="{{ $stackoverflowIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -183,7 +184,7 @@
 
       {{- with .Site.Params.npm -}}
         <li class="social-item">
-          <a href="//www.npmjs.com/~{{ . }}" rel="me" title="NPM" aria-label="NPM">
+          <a href="//www.npmjs.com/~{{ . }}" rel="me" title="NPM" aria-label="NPM" target="_blank">
             <span class="{{ $npmIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -191,7 +192,7 @@
 
       {{- with .Site.Params.dribbble -}}
         <li class="social-item">
-          <a href="//dribbble.com/{{ . }}" rel="me" title="Dribbble" aria-label="Dribbble">
+          <a href="//dribbble.com/{{ . }}" rel="me" title="Dribbble" aria-label="Dribbble" target="_blank">
             <span class="{{ $dribbbleIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -199,7 +200,7 @@
 
       {{- with .Site.Params.behance -}}
         <li class="social-item">
-          <a href="//www.behance.net/{{ . }}" rel="me" title="Behance" aria-label="Behance">
+          <a href="//www.behance.net/{{ . }}" rel="me" title="Behance" aria-label="Behance" target="_blank">
             <span class="{{ $behanceIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -207,7 +208,7 @@
 
       {{- with .Site.Params.pinterest -}}
         <li class="social-item">
-          <a href="//www.pinterest.com/{{ . }}" rel="me" title="Pinterest" aria-label="Pinterest">
+          <a href="//www.pinterest.com/{{ . }}" rel="me" title="Pinterest" aria-label="Pinterest" target="_blank">
             <span class="{{ $pinterestIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -215,7 +216,7 @@
 
       {{- with .Site.Params.jsfiddle -}}
         <li class="social-item">
-          <a href="//jsfiddle.net/user/{{ . }}" rel="me" title="JSFiddle" aria-label="JSFiddle">
+          <a href="//jsfiddle.net/user/{{ . }}" rel="me" title="JSFiddle" aria-label="JSFiddle" target="_blank">
             <span class="{{ $jsfiddleIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -223,7 +224,7 @@
 
       {{- with .Site.Params.codepen -}}
         <li class="social-item">
-          <a href="//codepen.io/{{ . }}" rel="me" title="Codepen" aria-label="Codepen">
+          <a href="//codepen.io/{{ . }}" rel="me" title="Codepen" aria-label="Codepen" target="_blank">
             <span class="{{ $codepenIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -231,7 +232,7 @@
 
       {{- with .Site.Params.codesandbox -}}
         <li class="social-item">
-          <a href="//codesandbox.io/u/{{ . }}" title="CodeSandbox" aria-label="CodeSandbox">
+          <a href="//codesandbox.io/u/{{ . }}" title="CodeSandbox" aria-label="CodeSandbox" target="_blank">
             <span class="{{ $codesandboxIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -239,7 +240,7 @@
 
       {{- with .Site.Params.weibo -}}
         <li class="social-item">
-          <a href="//weibo.com/{{ . }}" rel="me" title="Weibo" aria-label="Weibo">
+          <a href="//weibo.com/{{ . }}" rel="me" title="Weibo" aria-label="Weibo" target="_blank">
             <span class="{{ $weiboIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -247,7 +248,7 @@
 
       {{- with .Site.Params.linkedin -}}
         <li class="social-item">
-          <a href="//www.linkedin.com/in/{{ . }}" rel="me" title="LinkedIn" aria-label="LinkedIn">
+          <a href="//www.linkedin.com/in/{{ . }}" rel="me" title="LinkedIn" aria-label="LinkedIn" target="_blank">
             <span class="{{ $linkedinIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -255,7 +256,7 @@
 
       {{- with .Site.Params.zhihu -}}
         <li class="social-item">
-          <a href="//www.zhihu.com/people/{{ . }}" rel="me" title="Zhihu" aria-label="Zhihu">
+          <a href="//www.zhihu.com/people/{{ . }}" rel="me" title="Zhihu" aria-label="Zhihu" target="_blank">
             <span class="{{ $zhihuIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -263,7 +264,7 @@
 
       {{- with .Site.Params.douban -}}
         <li class="social-item">
-          <a href="//www.douban.com/people/{{ . }}" rel="me" title="Douban" aria-label="Douban">
+          <a href="//www.douban.com/people/{{ . }}" rel="me" title="Douban" aria-label="Douban" target="_blank">
             <span class="{{ $doubanIcon }}" aria-hidden="true"></span>
           </a>
         </li>
@@ -271,7 +272,7 @@
 
       {{- with .Site.Params.bilibili -}}
         <li class="social-item">
-          <a href="//space.bilibili.com/{{ . }}" rel="me" title="Bilibili" aria-label="Bilibili">
+          <a href="//space.bilibili.com/{{ . }}" rel="me" title="Bilibili" aria-label="Bilibili" target="_blank">
             <span class="{{ $bilibiliIcon }}" aria-hidden="true"></span>
           </a>
         </li>
