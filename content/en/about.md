@@ -12,7 +12,7 @@ learning new things. Writing clean, efficient and correct software is my passion
 I have been a professional software engineer for more than 10 years, these are 
 some of the most interesting project I've worked on:
 
-{{<project-card title="Ad-tech platform" tech-icons="python golang docker aws">}}
+{{<project-card title="Ad-tech platform" tech-icons="python golang docker aws" other-tech="Kubernetes">}}
   Spearheaded the development of a highly scalable ad-tech platform for a prominent US-based media company that handled 
   hundreds of millions of requests per day. 
 
