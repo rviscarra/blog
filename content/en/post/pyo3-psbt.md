@@ -3,18 +3,18 @@ title: "Accepting Bitcoin payments with Python, Rust and PyO3"
 author: "Rafael"
 cover: "/images/pyo3-psbt/cover.png"
 tags: ["python", "rust", "bitcoin", "cryptocurrency", "blockchain"]
-date: 2024-07-02T00:00:00-03:00
-build:
-  list: never
+date: 2024-07-18T00:00:00-03:00
 ---
 
 {{<figure src="/images/pyo3-psbt/cover.png" alt="Rusty Python" class="no-box-shadow">}}
 
+{{<toc>}}
+
 ### What to expect from this blog post
 
-This blog post is meant to be an introduction to PyO3 by walking the reader through the build process of a non-trivial 
-extension module in Rust using PyO3. A basic understanding of Python and Rust is recommended to get the most out of 
-this post.
+This blog post is meant to be an introduction to [PyO3](https://pyo3.rs) by walking the reader through the build 
+process of a non-trivial extension module in Rust using PyO3. Some familiarity with Python and Rust is recommended to 
+get the most out of this post, basic understanding of Bitcoin concepts may be required to fully grasp the code samples.
 
 <!--more-->
 
@@ -22,7 +22,7 @@ this post.
 
 The sample application exposes a simple UI that allows the user to submit a Bitcoin payment by signing (and optionally 
 broadcasting) a Partially Signed Bitcoin Transaction (PSBT) that was built by the application's backend. The code has 
-been tested on Chrome using the XVerse Wallet extension, by default the application is configured to use Bitcoin's 
+been tested in Chrome using the XVerse Wallet extension, by default the application is configured to use Bitcoin's 
 Testnet3 chain. The application's code can be split into three components:
 
 1. Frontend code that handles user input and wallet interaction, implemented in vanilla Javascript.
@@ -33,10 +33,6 @@ The following diagram shows how the data flows across said components:
 
 {{<figure src="/images/pyo3-psbt/payment-flow.png" alt="Payment data flow" class="no-box-shadow">}}
 
-#### Table of contents
-
-{{<toc>}}
-
 {{<alert title="Source code" class="info">}}
 You can find the accompanying source code [here](https://github.com/rviscarra/pyo3-psbt).
 {{</alert>}}
@@ -44,13 +40,14 @@ You can find the accompanying source code [here](https://github.com/rviscarra/py
 ### Bootstrapping the extension module
 
 Before we can write a single line of code, we need to figure out a way to build our module, and for that we'll use 
-[Maturin](https://github.com/PyO3/maturin). Maturin is a tool that allows us to build (and publish) Rust-based Python 
+[Maturin](https://github.com/PyO3/maturin), which is a tool that allows us to build (and publish) Rust-based Python 
 packages. Maturin also includes a useful boilerplate generation sub-command that will create everything we need to 
 compile Rust code into a Python module.
 
 
 ```bash
 # Generate our module skeleton and creatively name it "btc"
+# We passed the --mixed flag because we want a hybrid (Rust & Python) project so we can add type hints later
 $ maturin new --bindings pyo3 --mixed btc
 # Let's check what was generated
 $ tree
@@ -73,8 +70,8 @@ If you want to follow along you need to setup a virtualenv first. You can do so 
 {{</alert>}}
 
 We can see Maturin generated a Rust project with some source samples, since we indicated that we wanted to use PyO3 
-bindings the `pyo3` crate has been included as a dependency, all that is left is to install the `bitcoin` create with 
-`cargo add bitcoin@^0.32.0` and replace the contents of the `btc/src/lib.rs` file with the following code sample:
+bindings the `pyo3` crate has been included as a dependency, all that is left is to install the `bitcoin` crate with 
+`cargo add bitcoin@^0.32.0` and replace the content of the `btc/src/lib.rs` file with the following code sample:
 
 ```rust
 use std::str::FromStr;
@@ -112,9 +109,9 @@ cannot be parsed.
 - The `pymodule` macro allows us expose a Python module by declaring a function that will "build" our module by adding 
 our functions, classes and submodules.
 
-In general, implementing a Python extension module is straightforward thanks to PyO3's types conversion and macros for 
-exposing functions, classes and modules, this allows experienced Rust developers to write idiomatic code by making use 
-of standard Rust types, abstractions and patterns.
+In general, implementing a Python extension module is straightforward thanks to PyO3's types transformations and macros 
+for exposing functions, classes and modules, this allows experienced Rust developers to write idiomatic code by making 
+use of standard Rust types, abstractions and patterns.
 
 #### Building and testing our code
 
@@ -137,7 +134,7 @@ $ python
 >>>
 ```
 
-We can even write a simple Python unit test:
+We can even write a simple Python unit test in `btc/python/tests/test_all.py`:
 
 ```python
 import btc
@@ -146,7 +143,7 @@ def test_get_address_type():
     assert btc.get_address_type("bcrt1qg3gmqfdwgteve988hvps7kws2kdzagtkqf6gu0") == "p2wpkh"
 ```
 
-or a Rust one:
+or a Rust one in `btc/src/lib.rs`:
 
 ```rust
 #[cfg(test)]
@@ -166,9 +163,9 @@ to build, a PSBT that allows us to charge our user an arbitrary amount of Bitcoi
 
 ### Brief introduction to PSBTs
 
-At a very high level, a PSBT is a serialization format that allows a set of actors (i.e. users, services) to build and 
-sign a Bitcoin transaction incrementally. PSBTs are particularly useful when the transaction being built requires UTXOs 
-owned by different parties.
+At a very high level, a PSBT is a serialization format that allows a set of actors (i.e. users, services, devices) to 
+build and sign a Bitcoin transaction incrementally. PSBTs are particularly useful when the transaction being built 
+requires UTXOs[^1] owned by different parties.
 
 For demostration purposes, we'll keep our transaction architecture relatively simple. We'll charge the user a flat fee 
 of 1000 satoshis, for this we'll select one UTXO with enough sats to cover that amount and the miner fee, the 
@@ -177,7 +174,7 @@ difference will be returned to the user's payment address. The following diagram
 {{<figure src="/images/pyo3-psbt/tx-architecture.png" alt="Transaction Architecture" class="no-box-shadow">}}
 
 {{<alert title="Miner fee" class="info">}}
-The miner fee amount is not an transaction output, it's implicit and determined by the following formula: 
+The miner fee amount is not a transaction output, it's implicit and determined by the following formula: 
 `miner_fee = sum(inputs) - sum(outputs)`.
 {{</alert>}}
 
@@ -217,9 +214,10 @@ def make_payment_psbt(user_utxo: Utxo, payment_address: str, miner_fee: int) -> 
     return builder.serialize()
 ```
 
-As you may have noticed, we'll use the builder pattern to incrementally build our PSBT by adding inputs and outputs, we 
-also need a way to estimate the miner fee based on the user provided fee rate in sats/vByte.
-Let's start implementing our abstraction by declaring our `PsbtBuilder` struct that we'll expose as a Python class:
+As you may have noticed, we'll use the [builder pattern](https://refactoring.guru/design-patterns/builder) to 
+incrementally build our PSBT by adding inputs and outputs, we also need a way to estimate the miner fee based on the 
+user provided fee rate in sats/vByte. Let's start implementing our abstraction by declaring our `PsbtBuilder` struct 
+that we'll expose as a Python class:
 
 ```rust
 struct PsbtBuilderIn {
@@ -295,7 +293,7 @@ impl PsbtBuilder {
 
 Two interesting things are happening in `add_input`:
 
-1. This method receives an instance of a class declared in Python, this is possible because `InputUtxo` implements the 
+1. The method receives an instance of a class declared in Python, this is possible because `InputUtxo` implements the 
 `FromPyObject` trait.
 2. The `owner_pub_key` argument is optional, we are able to achieve this by declaring it as `Option<&PyBytes>`. If we 
 omit it when we call the method in Python, Rust will receive the `None` variant of the `Option<T>` enum.
@@ -352,8 +350,10 @@ impl PsbtBuilder {
     }
 }
 ```
-
-If you want to check the code of the `build` method you can read it [here](#).
+In this context `psbt::Psbt` is a type from the `bitcoin` crate that can't be converted to a Python equivalent, 
+therefore we can't expose this method to Python, so we'll keep it in a separate `impl` block making it accessible to 
+Rust only. If you want to check the whole `build` method you can read it 
+[here](https://github.com/rviscarra/pyo3-psbt/blob/c833cae87d1ad16951ada8e59f83dc7e3b5263ac/btc/src/psbt.rs#L122).
 
 Now that our PyClass struct is ready, we just need to make sure to register it in our module. We can do so by calling 
 the `add_class` method of the `PyModule` struct in our `btc` function:
@@ -371,7 +371,7 @@ fn btc(_py: Python, m: &PyModule) -> PyResult<()> {
 You can see the final version of the `btc/src/lib.rs` file 
 [here](https://github.com/rviscarra/pyo3-psbt/blob/main/btc/src/lib.rs). Unfortunately the module is too complex to test 
 it in the REPL, if you want to see a fully functional instance of the module working, you can run the provided sample 
-application. Follow the instructions in the [repository's README](https://github.com/rviscarra/pyo3-psbt).
+application. Follow the instructions in the [repository's](https://github.com/rviscarra/pyo3-psbt) README.
 
 ### Type hints for our native class
 
@@ -394,7 +394,7 @@ class PsbtBuilder:
 def get_address_type(address: str) -> str: ...
 ```
 
-Autocomplete and type errors should now work if your editor has support for them.
+Autocomplete and type checking should now work in editors that have support for them.
 
 ### Conclusion
 
@@ -405,4 +405,7 @@ and interop with Python almost seamlessly, making it a great tool for our belt.
 #### Acknowledgments
 
 I would like to thank [Jessica](https://www.linkedin.com/in/jessica-lopez-v) for the cover image and 
-[Norman](https://www.linkedin.com/in/norman-argueta) for the input in the early stages of this blog post.
+[Norman](https://www.linkedin.com/in/norman-argueta) for the input during the early stages of this blog post.
+
+
+[^1]: Unspent Transaction Output
