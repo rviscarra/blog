@@ -12,16 +12,11 @@
 {{- $avatar := resources.Get (.Site.Params.avatar | default "images/avatar.png") -}}
 {{- $style := resources.Get "styles/main.scss" | resources.ExecuteAsTemplate "styles/main-rendered.scss" . | resources.ToCSS | resources.Minify -}}
 {{- $customStyle := resources.Get (.Site.Params.customStyle | default "styles/custom.scss") | resources.ToCSS | resources.Minify -}}
-{{- $fontAwesome := "https://use.fontawesome.com/releases/v5.8.1/css/all.css" -}}
-{{- $fontAwesomeIntegrity := "sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" -}}
+{{- $fontAwesome := "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" -}}
+{{- $fontAwesomeIntegrity := "sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" -}}
   <!-- DNS Prefetch -->
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
   <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
-  {{ with .Site.Params.fontAwesome }}
-  <link href="//use.fontawesome.com" rel="dns-prefetch">
-  {{ else }}
-  <link href="//at.alicdn.com" rel="dns-prefetch">
-  {{ end }}
   <link href="//fonts.googleapis.com" rel="dns-prefetch">
   <link href="//fonts.gstatic.com" rel="dns-prefetch">
   {{ with .Site.DisqusShortname }}<link href="///disqus.com" rel="dns-prefetch">{{ end }}

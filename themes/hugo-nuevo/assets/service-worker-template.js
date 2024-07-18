@@ -23,7 +23,7 @@ var filesToCache = [
 
 {{ with .Site.Params.fontAwesome }}
   // FontAwesome
-  'https://use.fontawesome.com/releases/v5.7.2/css/all.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css',
 {{ else }}
   // Iconfont
   'https://at.alicdn.com/t/font_174169_qmgvd10zwbf.woff',

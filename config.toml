@@ -10,7 +10,7 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   customStyle = "styles/custom.scss"
   github = "rviscarra"
   linkedin = "rafael-viscarra-dev"
-  email = "hello {at} viscarra {dot} dev"
+  email = "hello@viscarra.dev"
   fontAwesome = true
 
 [markup]

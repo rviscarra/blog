@@ -1,0 +1,32 @@
+{{ $icons := strings.Split (.Get "tech-icons") " " }}
+{{ $tech := strings.Split (or (.Get "other-tech") "") " " }}
+{{ $repository := .Get "repository" }}
+
+<div class="project-card">
+  <header>
+    <div class="project-title">
+      {{ with $repository }}
+      <div>
+
+        <a href="https://github.com/{{ . }}" target="_blank">
+          <span class="fab fa-github"></span>
+        </a>
+      </div>
+      {{ end }}
+      <h3>{{ .Get "title" }}</h3>
+    </div>
+    <div class="icon-list">
+      {{ range $icons }}
+        <span class="fab fa-xl fa-{{ . }}"></span>
+      {{ end }}
+      {{ range $tech }}
+        {{ with . }}
+        <div>
+          <span class="other-tech">{{ . }}</span>
+        </div>
+        {{ end }}
+      {{ end }}
+    </div>
+  </header>
+  {{ .Inner | markdownify }}
+</div>
